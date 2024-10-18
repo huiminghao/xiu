@@ -127,7 +127,7 @@ impl RtspServerSession {
         //     None
         // };
 
-        let remote_addr = stream.peer_addr().unwrap_or(stream.local_addr());
+        let remote_addr = stream.peer_addr().unwrap_or(stream.local_addr().unwrap());
         let net_io: Box<dyn TNetIO + Send + Sync> = Box::new(TcpIO::new(stream));
         let io = Arc::new(Mutex::new(net_io));
 
